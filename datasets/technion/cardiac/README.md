@@ -125,12 +125,9 @@ This writes `bmode.png` for frame 8 of `data/c1.hdf5` — the reconstruction sho
 at the top of this card. Edit the `ZEA_FILE` and `FRAME` constants at the head of
 the script to render a different cine or frame.
 
-![zea reconstruction from raw_data beside the paired DAS target](assets/cardiac_raw_vs_paired_target.png)
-
 Each frame is also paired with its conventional delay-and-sum reconstruction in
-`beamformed_data` (the target for the raw→image learning task) — shown above
-beside the `zea.Pipeline` reconstruction of the same frame. Note its depth scale
-is approximate because the acquisition axial rate is not stored (see Known
+`beamformed_data` (the target for the raw→image learning task) — note its depth
+scale is approximate because the acquisition axial rate is not stored (see Known
 Issues).
 
 ## Known Issues
