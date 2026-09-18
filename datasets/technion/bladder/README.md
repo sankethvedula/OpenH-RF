@@ -121,8 +121,9 @@ Age and sex were not recorded for these acquisitions.
 
 `reconstruct.py` reconstructs a B-mode from `raw_data` using the `zea.Pipeline`
 defined in `pipeline.yaml`: delay-and-sum beamforming on a polar scanline grid
-(one image line per transmit, full receive aperture — `f_number: 0`) → envelope
-detection → normalization → log compression → sector scan conversion. It streams
+(one image line per transmit, dynamic receive focusing over the full aperture —
+`f_number: 0` disables f-number masking) → envelope detection → normalization →
+log compression → sector scan conversion. It streams
 the data straight from the Hub, so no local copy is needed:
 
 ```
