@@ -6,7 +6,7 @@
 # converted for display.
 #
 # NOTE: the axial sample rate and exact focus geometry are NOT stored with
-# this dataset (see convert.py / README). The depth scale is therefore
+# this dataset (see the README). The depth scale is therefore
 # approximate. The authoritative reconstruction target is the paired
 # beamformed_data ("labels") shipped in the file.
 

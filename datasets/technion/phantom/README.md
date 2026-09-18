@@ -18,6 +18,13 @@ size_categories:
 
 # OpenH-RF — Tissue-mimicking phantom pre-beamformed RF channel data
 
+![Tissue-mimicking phantom with point targets and an anechoic cyst](assets/phantom_gammex_403gsle.png)
+
+Gammex 403GS LE calibration phantom, frame 6 of [`data/ph.hdf5`](https://huggingface.co/datasets/nvidia/OpenH-RF/blob/main/technion/phantom/data/ph.hdf5) — point
+targets and the anechoic cyst, delay-and-sum beamformed from the raw per-element
+channel IQ by the `pipeline.yaml` in this folder. Reproduce it with
+`python reconstruct.py`.
+
 ## Dataset Description
 
 Pre-beamformed ultrasound **channel data** from a tissue-mimicking phantom,
@@ -81,25 +88,28 @@ is recorded only as `subject.type`, not as an anatomy or label.)
 
 ## Subject Metadata
 
-N/A — inanimate phantom (GAMMEX 403GS LE); `subject.type = phantom`.
+N/A — inanimate phantom (Gammex 403GS LE); `subject.type = phantom`.
 
 ## Data Validation
 
 `reconstruct.py` reconstructs a B-mode from `raw_data` using the `zea.Pipeline`
 in `pipeline.yaml` (delay-and-sum on a polar scanline grid → envelope →
-normalization → log compression → sector scan conversion). Run:
+normalization → log compression → sector scan conversion). It streams the data
+straight from the Hub, so no local copy is needed:
 
 ```
-python reconstruct.py data/ph.hdf5 --frame 6 --out bmode_ph.png
+python reconstruct.py
 ```
 
-Reference output: `bmode_ph.png` — resolvable point targets and a well-defined
-anechoic cyst at ~65 mm.
+This writes `bmode.png` for frame 6 of `data/ph.hdf5` — the reconstruction shown
+at the top of this card, with resolvable point targets and a well-defined
+anechoic cyst at ~65 mm. Edit the `ZEA_FILE` and `FRAME` constants at the head of
+the script to render a different frame.
 
 ## Known Issues
 
 - Same scan scheme and probe as the in-vivo bladder collection (GE
-  tissue-harmonic); acquired as its calibration reference. GAMMEX 403GS LE.
+  tissue-harmonic); acquired as its calibration reference. Gammex 403GS LE.
 
 ## Ethical Considerations
 

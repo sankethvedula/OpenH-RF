@@ -18,6 +18,12 @@ size_categories:
 
 # OpenH-RF — Cardiac pre-beamformed RF channel data (paired with DAS targets)
 
+![Apical four-chamber view reconstructed from pre-beamformed channel data](assets/cardiac_a4c.png)
+
+Apical four-chamber view, frame 8 of [`data/c1.hdf5`](https://huggingface.co/datasets/nvidia/OpenH-RF/blob/main/technion/cardiac/data/c1.hdf5) — delay-and-sum
+beamformed from the raw per-element channel IQ by the `pipeline.yaml` in this
+folder. Reproduce it with `python reconstruct.py`.
+
 ## Dataset Description
 
 Real, **in-vivo human** pre-beamformed ultrasound **channel data** for cardiac
@@ -49,6 +55,11 @@ channel data to a focused image (learned receive/transmit beamforming,
 super-resolution, clutter suppression), trained and evaluated against the paired
 delay-and-sum target. Secondary: motion estimation across the cardiac cine loops
 (§6.4) and anatomy/cohort interpretation (§6.5).
+
+![One 32-frame cardiac cine loop](assets/cardiac_cine.gif)
+
+One complete cine loop (32 frames) from `data/c1.hdf5`, rendered from the paired
+`beamformed_data` targets.
 
 ## Dataset Characterization
 
@@ -103,16 +114,24 @@ acquisitions.
 `reconstruct.py` reconstructs a B-mode from `raw_data` using the `zea.Pipeline`
 defined in `pipeline.yaml`: delay-and-sum on a polar scanline grid (one image line
 per acquisition line, receive dynamic focusing) → envelope detection →
-normalization → log compression → sector scan conversion. Run:
+normalization → log compression → sector scan conversion. It streams the data
+straight from the Hub, so no local copy is needed:
 
 ```
-python reconstruct.py data/a1.hdf5 --frame 15 --out bmode_a1.png
+python reconstruct.py
 ```
 
-Reference output: `bmode_a1.png`. Each frame is also paired with its conventional
-delay-and-sum reconstruction in `beamformed_data` (the target for the raw→image
-learning task) — note its depth scale is approximate because the acquisition axial
-rate is not stored (see Known Issues).
+This writes `bmode.png` for frame 8 of `data/c1.hdf5` — the reconstruction shown
+at the top of this card. Edit the `ZEA_FILE` and `FRAME` constants at the head of
+the script to render a different cine or frame.
+
+![zea reconstruction from raw_data beside the paired DAS target](assets/cardiac_raw_vs_paired_target.png)
+
+Each frame is also paired with its conventional delay-and-sum reconstruction in
+`beamformed_data` (the target for the raw→image learning task) — shown above
+beside the `zea.Pipeline` reconstruction of the same frame. Note its depth scale
+is approximate because the acquisition axial rate is not stored (see Known
+Issues).
 
 ## Known Issues
 
