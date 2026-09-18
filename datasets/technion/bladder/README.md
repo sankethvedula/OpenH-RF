@@ -20,7 +20,7 @@ size_categories:
 
 ![Transverse suprapubic view of the bladder reconstructed from pre-beamformed channel data](assets/bladder_transverse.png)
 
-Transverse suprapubic view, frame 75 of [`data/a2.hdf5`](https://huggingface.co/datasets/nvidia/OpenH-RF/blob/main/technion/bladder/data/a2.hdf5) — delay-and-sum
+Transverse suprapubic view, frame 30 of [`data/a1.hdf5`](https://huggingface.co/datasets/nvidia/OpenH-RF/blob/main/technion/bladder/data/a1.hdf5) — delay-and-sum
 beamformed from the raw per-element channel IQ by the `pipeline.yaml` in this
 folder. Reproduce it with `python reconstruct.py`.
 
@@ -130,7 +130,7 @@ the data straight from the Hub, so no local copy is needed:
 python reconstruct.py
 ```
 
-This writes `bmode.png` for frame 75 of `data/a2.hdf5` — the reconstruction shown
+This writes `bmode.png` for frame 30 of `data/a1.hdf5` — the reconstruction shown
 at the top of this card. Edit the `ZEA_FILE` and `FRAME` constants at the head of
 the script to render a different sweep or frame. The pipeline matches the
 acquisition's own receive-beamforming geometry, so the reconstruction reproduces
